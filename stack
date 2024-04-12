@@ -1,0 +1,44 @@
+#include<iostream>
+#include<stdio.h>
+#include<stack>
+using namespace std;
+void insertAtBottom(stack<int> &s, int element){
+    //base case
+    if(s.empty()){
+        s.push(element);
+    }
+    else{
+        int a=s.top();
+        s.pop();
+        insertAtBottom(s,element);
+        s.push(a);
+    }
+}
+
+void reverse(stack <int> &s){
+    if(!s.empty()){
+        int a=s.top();
+        s.pop();
+        reverse(s);
+        insertAtBottom(s,a);
+    }
+    else{
+        return;
+    }
+}
+int main(){
+    stack <int> s;
+    s.push(5);
+    s.push(4);
+    s.push(3);
+    s.push(7);
+
+    
+    reverse(s);
+    cout<<endl;
+    while(!s.empty()){
+        cout<<s.top()<<" ";
+        s.pop();
+    }
+    return 0;
+}
